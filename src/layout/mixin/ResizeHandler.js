@@ -12,6 +12,7 @@ export default {
     }
   },
   beforeMount() {
+    // 添加监听器，窗口调整大小时触发事件
     window.addEventListener('resize', this.$_resizeHandler)
   },
   beforeDestroy() {
@@ -32,11 +33,12 @@ export default {
       return rect.width - 1 < WIDTH
     },
     $_resizeHandler() {
+      console.log('trigger resize handler')
       if (!document.hidden) {
         const isMobile = this.$_isMobile()
         store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop')
-
         if (isMobile) {
+          // 如果菜单栏打开着则关掉
           store.dispatch('app/closeSideBar', { withoutAnimation: true })
         }
       }

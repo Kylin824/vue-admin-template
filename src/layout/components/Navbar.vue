@@ -50,6 +50,7 @@ export default {
   },
   methods: {
     toggleSideBar() {
+      // 触发app模块下的名为toggleSideBar的action
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {
@@ -73,7 +74,7 @@ export default {
     height: 100%;
     float: left;
     cursor: pointer;
-    transition: background .3s;
+    transition: background .3s;  //指定下面鼠标hover时的动画过渡时间
     -webkit-tap-highlight-color:transparent;
 
     &:hover {
