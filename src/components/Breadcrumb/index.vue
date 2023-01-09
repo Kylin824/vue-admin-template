@@ -3,7 +3,7 @@
     <!-- 增加动画效果 -->
     <transition-group name="breadcrumb">
       <el-breadcrumb-item v-for="(item,index) in levelList" :key="item.path">
-        <!-- 最后一个item不可点击 -->
+        <!-- span和a二选一，a可以点击跳转，span不可点击跳转 -->
         <span v-if="item.redirect==='noRedirect'||index===levelList.length-1" class="no-redirect">{{ item.meta.title }}</span>
         <!-- 阻止a的默认跳转事件，转而执行handleLink -->
         <a v-else @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
@@ -22,7 +22,9 @@ export default {
     }
   },
   watch: {
+    // 监听$route变量，如果有变化则刷新面包屑
     $route() {
+      console.log('$route变化啦！ ' + this.$route.name)
       this.getBreadcrumb()
     }
   },
@@ -31,7 +33,7 @@ export default {
   },
   methods: {
     getBreadcrumb() {
-      console.log(this.$route) // this.$route表示当前路由对象
+      console.log('刷新面包屑: ' + this.$route.path) // this.$route表示当前路由对象
       let matched = this.$route.matched.filter(item => item.meta && item.meta.title)
       const first = matched[0]
 
@@ -60,6 +62,7 @@ export default {
         this.$router.push(redirect)
         return
       }
+      // 跳转路由
       this.$router.push(this.pathCompile(path))
     }
   }
