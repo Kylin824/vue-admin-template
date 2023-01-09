@@ -1,8 +1,11 @@
 <template>
-  <el-breadcrumb class="app-breadcrumb" separator="/">
+  <el-breadcrumb class="app-breadcrumb" separator-class="el-icon-arrow-right">
+    <!-- 增加动画效果 -->
     <transition-group name="breadcrumb">
       <el-breadcrumb-item v-for="(item,index) in levelList" :key="item.path">
-        <span v-if="item.redirect==='noRedirect'||index==levelList.length-1" class="no-redirect">{{ item.meta.title }}</span>
+        <!-- 最后一个item不可点击 -->
+        <span v-if="item.redirect==='noRedirect'||index===levelList.length-1" class="no-redirect">{{ item.meta.title }}</span>
+        <!-- 阻止a的默认跳转事件，转而执行handleLink -->
         <a v-else @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
       </el-breadcrumb-item>
     </transition-group>
@@ -28,7 +31,7 @@ export default {
   },
   methods: {
     getBreadcrumb() {
-      // only show routes with meta.title
+      console.log(this.$route) // this.$route表示当前路由对象
       let matched = this.$route.matched.filter(item => item.meta && item.meta.title)
       const first = matched[0]
 

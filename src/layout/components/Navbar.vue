@@ -1,5 +1,6 @@
 <template>
   <div class="navbar">
+    <!-- :is-active是props传值，@toggleClick是自定义事件   -->
     <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
 
     <breadcrumb class="breadcrumb-container" />
