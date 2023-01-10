@@ -137,6 +137,18 @@ export const constantRoutes = [
             component: () => import('@/views/nested/menu1/menu1-3'),
             name: 'Menu1-3',
             meta: { title: 'Menu1-3' }
+          },
+          {
+            path: 'menu1-4',
+            component: () => import('@/views/nested/menu1/menu1-3'),
+            name: 'Menu1-4',
+            meta: { title: 'Menu1-4' }
+          },
+          {
+            path: 'menu1-5',
+            component: () => import('@/views/nested/menu1/menu1-3'),
+            name: 'Menu1-5',
+            meta: { title: 'Menu1-5' }
           }
         ]
       },
@@ -151,6 +163,61 @@ export const constantRoutes = [
 
   {
     path: 'external-link',
+    component: Layout,
+    children: [
+      {
+        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
+        meta: { title: 'External Link', icon: 'link' }
+      }
+    ]
+  },
+
+  {
+    path: 'external-link1',
+    component: Layout,
+    children: [
+      {
+        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
+        meta: { title: 'External Link', icon: 'link' }
+      }
+    ]
+  },
+
+  {
+    path: 'external-link2',
+    component: Layout,
+    children: [
+      {
+        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
+        meta: { title: 'External Link', icon: 'link' }
+      }
+    ]
+  },
+
+  {
+    path: 'external-link3',
+    component: Layout,
+    children: [
+      {
+        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
+        meta: { title: 'External Link', icon: 'link' }
+      }
+    ]
+  },
+
+  {
+    path: 'external-link4',
+    component: Layout,
+    children: [
+      {
+        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
+        meta: { title: 'External Link', icon: 'link' }
+      }
+    ]
+  },
+
+  {
+    path: 'external-link5',
     component: Layout,
     children: [
       {

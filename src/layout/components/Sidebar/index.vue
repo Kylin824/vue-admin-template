@@ -1,8 +1,11 @@
 <template>
   <div :class="{'has-logo':showLogo}">
     <logo v-if="showLogo" :collapse="isCollapse" />
+    <!--支持菜单栏上下滑动-->
     <el-scrollbar wrap-class="scrollbar-wrapper">
+      <!--使用导航菜单的垂直模式 -->
       <el-menu
+        mode="vertical"
         :default-active="activeMenu"
         :collapse="isCollapse"
         :background-color="variables.menuBg"
@@ -10,7 +13,6 @@
         :unique-opened="false"
         :active-text-color="variables.menuActiveText"
         :collapse-transition="false"
-        mode="vertical"
       >
         <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
       </el-menu>
@@ -31,6 +33,9 @@ export default {
       'sidebar'
     ]),
     routes() {
+      console.log(this.$router)
+      console.log('this.$router.options.routes')
+      console.log(this.$router.options.routes)
       return this.$router.options.routes
     },
     activeMenu() {
