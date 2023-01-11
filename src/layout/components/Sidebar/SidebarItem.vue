@@ -1,13 +1,19 @@
 <template>
   <div v-if="!item.hidden">
+    <!--无子菜单进这里-->
+    <!--只有一个子菜单，也会直接用子菜单来显示-->
     <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
       <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
+        <!-- 插槽 替换app-link中<slot/>的位置 -->
         <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
+          <!-- ? jsx -->
+          <!-- 插槽 替换el-menu-item中<slot></slot>的位置 -->
           <item :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" :title="onlyOneChild.meta.title" />
         </el-menu-item>
       </app-link>
     </template>
 
+    <!--有子菜单进这里-->
     <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
       <template slot="title">
         <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" />

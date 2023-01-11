@@ -36,6 +36,7 @@ module.exports = {
       warnings: false,
       errors: true
     },
+    // https://www.sunmoonblog.com/2020/07/01/vue-mockserver-watch-not-working/
     before: require('./mock/mock-server.js')
   },
   configureWebpack: {
