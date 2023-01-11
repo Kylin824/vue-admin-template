@@ -27,7 +27,7 @@
           <!-- divided分割线-->
           <!-- @click="logout" 监听 el-dropdown-item组件的 logout事件，而el-dropdown-item没有这个logout事件，所以点了是无效的-->
           <!-- @click.native="logout" 绑定当前组件的logout事件，点了是有效的-->
-          <el-dropdown-item divided @click="logout">
+          <el-dropdown-item divided @click.native="logout">
             <span style="display:block;">Log Out</span>
           </el-dropdown-item>
         </el-dropdown-menu>
@@ -57,9 +57,13 @@ export default {
       // 点击hamburger，展开或折叠左侧菜单栏，触发app模块下的名为toggleSideBar的action
       this.$store.dispatch('app/toggleSideBar')
     },
+    // async 确保函数返回一个 promise，如果是非 promise 的值则会包装成promise后返回
     async logout() {
-      console.log('logout 被触发！')
+      // await只在async函数内工作
+      // await 让 JavaScript 引擎等待直到 promise 完成（settle）并返回结果。
+      // await 实际上会暂停函数的执行，直到 promise 状态变为 settled，然后以 promise 的结果继续执行。
       await this.$store.dispatch('user/logout')
+      // 这里成功了才会往下走，失败的话在axios的response拦截器那里统一处理
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     }
   }
