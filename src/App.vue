@@ -6,6 +6,10 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  created() {
+    console.log('process.env.NODE_ENV')
+    console.log(process.env.NODE_ENV)
+  }
 }
 </script>
