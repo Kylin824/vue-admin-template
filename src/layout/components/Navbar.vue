@@ -24,8 +24,10 @@
           <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
             <el-dropdown-item>Docs</el-dropdown-item>
           </a>
-          <!-- .native 使用原生事件 -->
-          <el-dropdown-item divided @click.native="logout">
+          <!-- divided分割线-->
+          <!-- @click="logout" 监听 el-dropdown-item组件的 logout事件，而el-dropdown-item没有这个logout事件，所以点了是无效的-->
+          <!-- @click.native="logout" 绑定当前组件的logout事件，点了是有效的-->
+          <el-dropdown-item divided @click="logout">
             <span style="display:block;">Log Out</span>
           </el-dropdown-item>
         </el-dropdown-menu>
@@ -52,10 +54,11 @@ export default {
   },
   methods: {
     toggleSideBar() {
-      // 触发app模块下的名为toggleSideBar的action
+      // 点击hamburger，展开或折叠左侧菜单栏，触发app模块下的名为toggleSideBar的action
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {
+      console.log('logout 被触发！')
       await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     }
